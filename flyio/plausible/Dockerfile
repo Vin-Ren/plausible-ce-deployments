@@ -16,6 +16,9 @@ COPY entrypoint.sh /entrypoint-custom.sh
 # RUN ls -al /
 
 # COPY DATABASE_URL /run/secrets/DATABASE_URL
+USER root
+RUN wget https://curl.se/ca/cacert.pem -O /tmp/cacert.pem && \
+    mkdir -p /app && mv /tmp/cacert.pem /app/GLOBAL_CACERT.pem
 COPY extra_conf.exs /app/extra_conf.exs
 
 # ENTRYPOINT [ "/bin/sh" ]
