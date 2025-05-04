@@ -1,0 +1,31 @@
+# fly.toml app configuration file generated for plausible-app on 2025-05-04T14:43:51+07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'plausible-app'
+primary_region = 'sin'
+
+[build]
+
+[env]
+  LOG_LEVEL = "debug"
+  CLICKHOUSE_DATABASE_URL = "http://plausible-clickhouse-db.internal:8123/plausible_events_db"
+  EXTRA_CONFIG_PATH = "/app/extra_conf.exs"
+
+[[mounts]]
+  source = 'plausible'
+  destination = '/var/lib/plausible'
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1

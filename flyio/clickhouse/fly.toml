@@ -1,0 +1,21 @@
+# fly.toml app configuration file generated for plausible-clickhouse-db on 2025-05-04T14:38:33+07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'plausible-clickhouse-db'
+primary_region = 'sin'
+
+[build]
+
+[env]
+  CLICKHOUSE_SKIP_USER_SETUP=1
+
+[[mounts]]
+  source = 'plausible_clickhouse_data'
+  destination = '/var/lib/clickhouse'
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
