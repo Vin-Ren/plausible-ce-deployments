@@ -9,7 +9,7 @@ primary_region = 'sin'
 [build]
 
 [env]
-
+  CLICKHOUSE_DATABASE_URL = "http://plausible-clickhouse-db.internal:8123/plausible_events_db"
   EXTRA_CONFIG_PATH = "/app/extra_conf.exs"
   DATABASE_CACERTFILE="/app/GLOBAL_CACERT.pem"
 
