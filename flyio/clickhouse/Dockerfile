@@ -1,6 +1,6 @@
 FROM clickhouse/clickhouse-server:24.12-alpine
 
-# ENV CLICKHOUSE_SKIP_USER_SETUP=1
+RUN apk add --no-cache python3 curl
 
 # Copy configs directly into image
 COPY logs.xml /etc/clickhouse-server/config.d/logs.xml
@@ -12,5 +12,7 @@ RUN mv /etc/clickhouse-server/config.d/docker_related_config.xml /trash.xml
 
 COPY entrypoint.sh /usr/local/bin/entrypoint-custom.sh
 RUN chmod +x /usr/local/bin/entrypoint-custom.sh
+COPY health-check.sh /health-check.sh
+RUN chmod +x /health-check.sh
 
 ENTRYPOINT ["entrypoint-custom.sh"]
