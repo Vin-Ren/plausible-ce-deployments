@@ -9,7 +9,7 @@ primary_region = 'sin'
 [build]
 
 [env]
-  CLICKHOUSE_SKIP_USER_SETUP=1
+  CLICKHOUSE_SKIP_USER_SETUP="1"
 
 [[mounts]]
   source = 'plausible_clickhouse_data'
